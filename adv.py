@@ -1,4 +1,4 @@
-# YouTube Video: https://www.youtube.com/watch?v=rhBZqEWsZU4
+
 from tweepy import API
 from tweepy import Cursor
 from tweepy.streaming import StreamListener
@@ -72,9 +72,7 @@ class TwitterAuthenticator():
 
 # # # # TWITTER STREAMER # # # #
 class TwitterStreamer():
-    """
-    Class for streaming and processing live tweets.
-    """
+  
 
     def __init__(self):
         self.twitter_autenticator = TwitterAuthenticator()
@@ -85,18 +83,13 @@ class TwitterStreamer():
         auth = self.twitter_autenticator.authenticate_twitter_app()
         stream = Stream(auth, listener)
 
-        # This line filter Twitter Streams to capture data by the keywords:
-       # stream.filter(track=hash_tags)#
+      
 
 
 # # # # TWITTER STREAM LISTENER # # # #
 class TwitterListener(StreamListener):
-    """
-    This is a basic listener that just prints received tweets to stdout.
-    """
-
-   # def __init__(self, ftc):
-        #self.ftchAppFile = ftchAppFile#
+   
+  
 
     def on_data(self, data):
         try:
@@ -146,15 +139,11 @@ class tweetAnalyzer():
         return df
 
 
-
-
-
-
 if __name__ == '__main__':
     # Authenticate using config.py and connect to Twitter Streaming API.
     twitter_Client=TwitterClient()
     api= twitter_Client.simplyfying_twt_api()
-    tweet_yaha_anay=tweetAnalyzer()
+    tweet_analyse=tweetAnalyzer()
     tweets=api.user_timeline(screen_name="pycon",count=200)
 
     df=tweet_yaha_anay.tweets_to_data_frame(tweets)
@@ -181,7 +170,7 @@ if __name__ == '__main__':
     #time_retweets.plot(figsize=(16, 4), label="retweets", legend=True)
     #plt.show()
 
-    df['sentiment'] = np.array([tweet_yaha_anay.analyze_sentiment(tweet) for tweet in df['tweets']])
+    df['sentiment'] = np.array([tweet_analyse.analyze_sentiment(tweet) for tweet in df['tweets']])
 
    # print(tweets[0].id)
     print(df.head(10))
